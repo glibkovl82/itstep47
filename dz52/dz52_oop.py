@@ -1,9 +1,12 @@
 class BankAccount:
-
+    accounts = []
+    balances = []
     def __init__(self, account_number, balance, owner_name):
         self.__account_number = account_number
         self._balance = balance
         self.owner_name = owner_name
+        BankAccount.accounts.append(self)
+        BankAccount.balances.append(self._balance)
 
     def __str__(self):
         return f'{self.owner_name}, account: {self.__account_number}, balance: {self._balance}'
@@ -70,10 +73,16 @@ class BankAccount:
                 maching_accounts.append(account)
         return maching_accounts
 
+    @classmethod
+    def get_average_balance(cls):
+        return sum(cls.balances) / len(cls.balances)
+
+    
+
 
 
 costomer1 = BankAccount(99999, 100, "Jhon")
-costomer2 = BankAccount(888888, 500, "Luck")
+costomer2 = BankAccount(88888, 500, "Luck")
 costomer3 = BankAccount(77777, 700, "Frenk")
 costomer4 = BankAccount(66666, 900, "Sten")
 print(f'{costomer1}\n{costomer2}\n{costomer3}\n{costomer4}')
@@ -104,3 +113,20 @@ print('current account number', costomer4.owner_name, "-", costomer4.account_num
 print()
 costomer4.account_number = 22222
 print('new account number', costomer4.owner_name, "-", costomer4.account_number)
+print()
+costomer5 = BankAccount(18181, 1000, "Cros")
+costomer6 = BankAccount(16161, 1600, "Cris")
+costomer7 = BankAccount(17171, 1700, "Graf")
+lst = BankAccount.find_accounts_by_owner("Cros")
+lst1 = BankAccount.find_accounts_by_owner("Cris")
+lst2 = BankAccount.find_accounts_by_owner("Graf")
+print(lst2)
+
+
+for i in lst1:
+    print(i)
+
+print()
+# print(BankAccount.accounts)
+print()
+print(f'avg balance: {BankAccount.get_average_balance():.2f} grn')
