@@ -63,13 +63,12 @@ class BankAccount:
         self.__account_number = new_account_number
 
 
-
 costomer1 = BankAccount(99999, 100, "Jhon")
 costomer2 = BankAccount(888888, 500, "Luck")
 costomer3 = BankAccount(77777, 700, "Frenk")
 costomer4 = BankAccount(66666, 900, "Sten")
 print(f'{costomer1}\n{costomer2}\n{costomer3}\n{costomer4}')
-
+print()
 costomer1.deposit(500)
 print(costomer1)
 costomer1.withdraw(200)
